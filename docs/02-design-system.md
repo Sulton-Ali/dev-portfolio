@@ -4,33 +4,76 @@ The design system is the **contract between components and themes**. Components
 only ever reference *semantic tokens*. Each theme supplies the values. This is
 what lets one content model look completely different per theme.
 
-## Theming mechanism
+## Theming mechanism (implemented design)
 
-- Tokens are **CSS custom properties** defined in `src/theme/tokens.css`.
-- The active theme + mode are attributes on `<html>`:
-  `data-theme="bento" data-mode="dark"`.
-- Tailwind v4 maps utilities to these variables via `@theme`, so classes like
-  `bg-surface text-fg border-border` resolve to the active theme's values.
-- Switching theme/mode = changing the attribute. No component re-render required
-  for the visual change; CSS does the work.
+Two independent axes as attributes on `<html>`:
+- `data-theme` — `bento` (active) · `terminal` (M7) · `spatial` (future). **Always set.**
+- `data-mode` — `dark` · `light`. **Set only when the user explicitly chose a mode.**
+  When absent, the mode follows the OS via `prefers-color-scheme` (see below).
 
-```html
-<html data-theme="bento" data-mode="dark"> … </html>
-```
+### Runtime CSS variables + Tailwind v4 `@theme inline`
+
+Each `[data-theme]` (+ optional `[data-mode]`) selector assigns **runtime semantic
+vars** (`--bg`, `--fg`, `--surface`, `--accent`, …). Tailwind utilities are bound
+to those vars with `@theme inline`, so classes resolve to whatever value is in
+scope at runtime:
 
 ```css
-/* tokens.css (illustrative) */
-:root {
-  /* default = bento dark fallback */
+/* src/styles.css */
+@import "tailwindcss";
+@import "./theme/tokens.css";
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-foreground: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-subtle: var(--fg-subtle);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-fg);
+  --color-accent-muted: var(--accent-muted);
+  --color-ring: var(--ring);
+  /* fonts, radii, etc. likewise mapped */
 }
-[data-theme="bento"][data-mode="dark"]  { /* … token values … */ }
-[data-theme="bento"][data-mode="light"] { /* … */ }
-[data-theme="terminal"][data-mode="dark"]  { /* … */ }
-[data-theme="terminal"][data-mode="light"] { /* … */ }
 ```
 
-> SSR detail: `__root.tsx` reads the theme cookie and renders the attributes on
-> `<html>` server-side, eliminating any flash of the wrong theme/mode.
+This yields utilities like `bg-background`, `bg-surface`, `text-foreground`,
+`text-muted`, `border-border`, `text-accent`/`bg-accent`, `ring-ring`. **Components
+use these utilities only — never raw colors.**
+
+### No-flash SSR strategy (dark-base + media-query for unset)
+
+`dark` is the base; `light` applies when the OS prefers light **and** the user has
+not chosen a mode, or when the user explicitly chose light:
+
+```css
+[data-theme="bento"] { /* shared tokens + DARK values (base) */ }
+
+@media (prefers-color-scheme: light) {
+  [data-theme="bento"]:not([data-mode]) { /* LIGHT values */ }
+}
+[data-theme="bento"][data-mode="light"] { /* LIGHT values */ }
+/* explicit data-mode="dark" needs no rule — base is dark, and the media
+   rule is excluded by :not([data-mode]) */
+```
+
+Why this is flash-proof with **zero blocking script**:
+- The server reads the **theme** + (explicit) **mode** cookies and renders the
+  attributes into the SSR HTML, so an explicit choice is correct on first paint.
+- The only thing the server can't know — the OS preference for a first-time
+  visitor with no mode cookie — is resolved entirely in CSS via the media query.
+  No inline script, no hydration mismatch.
+
+### Server cookie read (TanStack Start)
+
+`@tanstack/react-start/server` exposes `getCookie(name)` (ambient request
+context). Read it inside a `createServerFn` called from the **root route loader**;
+the shell sets `data-theme={theme}` and `data-mode={mode ?? undefined}` on `<html>`
+from that data. Client-side, the switcher writes the cookie via `document.cookie`
+and updates `document.documentElement` attributes immediately (no reload, no flash).
+`mode` cookie absent ⇒ "system".
 
 ## Semantic token contract
 

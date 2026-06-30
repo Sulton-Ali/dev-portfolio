@@ -1,17 +1,43 @@
-
 @import "tailwindcss";
+@import "./theme/tokens.css";
+
+@theme inline {
+	--color-background: var(--bg);
+	--color-surface: var(--surface);
+	--color-surface-raised: var(--surface-raised);
+	--color-border: var(--border);
+	--color-foreground: var(--fg);
+	--color-muted: var(--fg-muted);
+	--color-subtle: var(--fg-subtle);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-fg);
+	--color-accent-muted: var(--accent-muted);
+	--color-ring: var(--ring);
+	--color-success: var(--success);
+	--color-warning: var(--warning);
+	--color-danger: var(--danger);
+	--font-display: var(--font-display);
+	--font-body: var(--font-body);
+	--font-mono: var(--font-mono);
+	--radius-sm: var(--r-sm);
+	--radius-md: var(--r-md);
+	--radius-lg: var(--r-lg);
+	--radius-xl: var(--r-xl);
+}
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html,
 body,
 #app {
-  min-height: 100%;
+	min-height: 100%;
 }
 
 body {
-  margin: 0;
+	margin: 0;
+	background-color: var(--bg);
+	color: var(--fg);
+	font-family: var(--font-body);
 }
-

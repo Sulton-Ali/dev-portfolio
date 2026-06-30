@@ -25,13 +25,13 @@ Legend: ☐ todo · ◐ in progress · ☑ done
 - Follow-ups deferred to M4: harden `buildVCard` (RFC escaping, `N:`/site `URL:`);
   skill rendering must skip empty groups (DevOps group is empty pending real data).
 
-## M2 — Theme infrastructure
-- ☐ `tokens.css` — full semantic token contract; **Bento** dark+light values.
-- ☐ Tailwind `@theme` mapping utilities → tokens.
-- ☐ `ThemeProvider`, `registry.ts`, `theme-cookie.ts` (SSR-safe read in root).
-- ☐ `__root.tsx` sets `data-theme`/`data-mode` from cookie (no flash).
-- ☐ `ThemeSwitcher` + mode toggle.
-- **Done when:** switching theme/mode persists and renders correctly on reload (SSR).
+## M2 — Theme infrastructure ✅
+- ☑ `tokens.css` — Bento dark+light values; dark-base + media-query no-flash strategy.
+- ☑ Tailwind `@theme inline` maps runtime vars → utilities (`bg-background`, `text-foreground`, `border-border`, `text-accent`, `ring-ring`, …).
+- ☑ `ThemeProvider`, `registry.ts`, `theme-cookie.ts` (client) + `theme-server.ts` (`getCookie` server fn).
+- ☑ `__root.tsx` loader reads prefs; `<html>` gets `data-theme` always, `data-mode` only when explicit (no flash).
+- ☑ `ThemeSwitcher` (mode cycle system→light→dark + theme selector; temp placement, moves to header in M3).
+- ☑ **Done:** gates pass; SSR verified across no-cookie/light/dark/garbage states. Built by Sonnet, lead-reviewed + runtime-verified.
 
 ## M3 — Shared primitives & components
 - ☐ Primitives: `Container`, `Section`, `Button`, `Badge`, `Card`, `Link`.

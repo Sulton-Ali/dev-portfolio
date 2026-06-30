@@ -100,6 +100,7 @@ Start at [docs/README.md](./docs/README.md). Key docs:
 
 ## Current status
 
-Phase: **M2 — theme infrastructure** (next). M0 (scaffold + docs + tooling) and
-M1 (content layer + lib helpers) are done. See [Roadmap](./docs/07-roadmap.md) for
-the live checklist.
+Phase: **M3 — shared primitives & components** (next). M0 (scaffold + docs +
+tooling), M1 (content layer + lib helpers), and M2 (theme infrastructure —
+switchable Bento dark/light, SSR no-flash) are done. See
+[Roadmap](./docs/07-roadmap.md) for the live checklist.
