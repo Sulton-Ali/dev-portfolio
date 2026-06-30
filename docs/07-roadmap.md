@@ -17,11 +17,13 @@ Legend: ☐ todo · ◐ in progress · ☑ done
 - ◐ Root layout `__root.tsx` exists (html/head/meta + devtools). Skip link + ThemeProvider land in M2.
 - ☑ **Done:** dev server runs (`pnpm dev`), SSR renders styled page (verified), `tsc` + `biome` clean.
 
-## M1 — Content layer
-- ☐ `src/content/types.ts` (from [Content Model](./04-content-model.md)).
-- ☐ Placeholder `profile`, `skills`, `experience`, `projects`, `socials` + barrel.
-- ☐ `src/lib/vcard.ts`, `src/lib/seo.ts`, `src/lib/utils.ts`.
-- **Done when:** content imports type-check and are consumable.
+## M1 — Content layer ✅
+- ☑ `src/content/types.ts` (from [Content Model](./04-content-model.md)).
+- ☑ Placeholder `profile`, `skills`, `experience`, `projects`, `socials` + barrel.
+- ☑ `src/lib/vcard.ts`, `src/lib/seo.ts`, `src/lib/utils.ts`.
+- ☑ **Done:** gates pass (`tsc --noEmit` 0, `biome check` clean). Built by Sonnet, lead-reviewed.
+- Follow-ups deferred to M4: harden `buildVCard` (RFC escaping, `N:`/site `URL:`);
+  skill rendering must skip empty groups (DevOps group is empty pending real data).
 
 ## M2 — Theme infrastructure
 - ☐ `tokens.css` — full semantic token contract; **Bento** dark+light values.
