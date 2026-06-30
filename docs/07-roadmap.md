@@ -33,11 +33,13 @@ Legend: ☐ todo · ◐ in progress · ☑ done
 - ☑ `ThemeSwitcher` (mode cycle system→light→dark + theme selector; temp placement, moves to header in M3).
 - ☑ **Done:** gates pass; SSR verified across no-cookie/light/dark/garbage states. Built by Sonnet, lead-reviewed + runtime-verified.
 
-## M3 — Shared primitives & components
-- ☐ Primitives: `Container`, `Section`, `Button`, `Badge`, `Card`, `Link`.
-- ☐ Shared: `ProjectCard`, `SkillList`, `ExperienceItem`, `SocialLinks`, `StatStrip`.
-- ☐ Header nav + footer in root layout.
-- **Done when:** primitives render token-driven, theme-agnostic.
+## M3 — Shared primitives & components ✅
+- ☑ Primitives: `Container`, `Section`, `Heading`, `Text`, `Button` (+`buttonClasses`), `Badge`, `Card`, `Link` (type-safe via `createLink`), `ExternalLink`.
+- ☑ Shared: `ProjectCard`, `SkillList` (skips empty groups), `ExperienceItem`, `SocialLinks`, `StatStrip`, `SiteHeader`, `SiteFooter`.
+- ☑ Header nav (active states) + footer in root layout; skip-to-content link; switcher moved into header.
+- ☑ Stub routes `/about`, `/work`, `/contact` (so nav type-checks; M4 fills them in).
+- ☑ Added `tailwind-merge`; `cn` now resolves conflicting utility overrides reliably.
+- ☑ **Done:** gates pass; all routes SSR 200 with chrome verified. Built by Sonnet (M3a primitives, M3b shared), lead-reviewed.
 
 ## M4 — Bento theme + all pages (v1 visual)
 - ☐ `bento/` components: `BentoGrid`, `BentoCell`, `GlassCard`, `GradientBackdrop`,

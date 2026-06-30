@@ -100,7 +100,7 @@ Start at [docs/README.md](./docs/README.md). Key docs:
 
 ## Current status
 
-Phase: **M3 — shared primitives & components** (next). M0 (scaffold + docs +
-tooling), M1 (content layer + lib helpers), and M2 (theme infrastructure —
-switchable Bento dark/light, SSR no-flash) are done. See
-[Roadmap](./docs/07-roadmap.md) for the live checklist.
+Phase: **M4 — Bento theme + all pages** (next). Done: M0 (scaffold + docs +
+tooling), M1 (content + lib helpers), M2 (theme infra — Bento dark/light, SSR
+no-flash), M3 (primitives + shared components + header/footer/nav + stub routes).
+See [Roadmap](./docs/07-roadmap.md) for the live checklist.
