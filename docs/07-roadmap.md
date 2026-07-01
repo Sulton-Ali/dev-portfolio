@@ -102,10 +102,12 @@ TanStack Start's official partner and bypasses it via serverless functions.
   `~/stats $` etc. Other pages restyle via the token swap (mono/green/sharp).
 - ☑ Verified all pages + 404 in Terminal, dark + light; palette keyboard nav
   (arrows/Enter/Esc), focus mgmt, terminal-gating; no hydration mismatch.
-- **Done when:** Terminal selectable and complete. ✅ (Built M7a–M7d, committed
-  `5f796b9`→`c324027`.) **Redeploy:** push to trigger Netlify (registry flip makes
-  Terminal live). Optional future polish: bespoke Terminal treatments (git-log
-  project cards, `dependencies` skill list) — token swap already reads well.
+- ☑ Bespoke Terminal section treatments (commit `0191b86`): `ProjectCardTerminal`
+  (git-log commit entries, accent left-rule for featured) on Work; `SkillListTerminal`
+  (package.json `dependencies` block) on About — section-level theme branch, Bento
+  unchanged. Built by a Sonnet orchestrator + Sonnet executors, browser-verified.
+- **Done when:** Terminal selectable and complete. ✅ (Built M7a–M7d + polish,
+  committed `5f796b9`→`0191b86`.) Terminal is LIVE on sjalolov.dev.
 
 ## M8 — Hardening & nice-to-haves (optional)
 - ☐ `/work/:slug` detail pages — **deferred from v1**; build here if revived.
