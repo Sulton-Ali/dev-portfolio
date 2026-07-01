@@ -2,6 +2,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
+import { GradientBackdrop } from "#/components/bento";
 import { SiteFooter, SiteHeader } from "#/components/shared";
 import { ThemeProvider } from "#/theme/ThemeProvider";
 import { getThemePreferences } from "#/theme/theme-server";
@@ -47,6 +48,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					>
 						Skip to content
 					</a>
+					<GradientBackdrop />
 					<div className="flex min-h-screen flex-col">
 						<SiteHeader />
 						<main id="main" className="flex-1">

@@ -42,14 +42,24 @@ Legend: ☐ todo · ◐ in progress · ☑ done
 - ☑ **Done:** gates pass; all routes SSR 200 with chrome verified. Built by Sonnet (M3a primitives, M3b shared), lead-reviewed.
 
 ## M4 — Bento theme + all pages (v1 visual)
-- ☐ `bento/` components: `BentoGrid`, `BentoCell`, `GlassCard`, `GradientBackdrop`,
-  `LocalTimeWidget`, `StatCard`.
-- ☐ Build **Home** as bento grid.
-- ☐ Build **About** (bio, timeline, skills).
-- ☐ Build **Work** (project grid; cards link to repo/live — no detail pages in v1; tag filter optional).
-- ☐ Build **Contact** (email + copy, socials, résumé, vCard download).
-- ☐ 404 page, responsive pass, a11y pass.
+- ☑ `bento/` components: `BentoGrid`, `BentoCell` (size variants), `GlassCard`,
+  `GradientBackdrop` (mounted in `__root`), `LocalTimeWidget` (SSR-safe), `StatCard`.
+- ☑ Build **Home** as bento grid (identity, pitch+CTAs, stats, stack, featured, local time, connect).
+- ☑ Build **About** (bio prose, experience timeline, skills — as glass cards).
+- ☑ Build **Work** (project grid; featured-first; cards link to repo/live — no detail pages in v1; no tag filter).
+- ☑ Build **Contact** (email + copy-to-clipboard, socials, résumé, vCard `.vcf` download, availability badge).
+- ◐ 404 page: catch-all splat route (`routes/$.tsx`) renders on-theme `NotFound` through the
+  shell. Follow-up (M5/SEO): responds `200` — wire a real `404` status server-side.
+- ☑ Responsive + a11y pass (Playwright MCP, mobile+desktop, dark+light). Fixes: `SiteHeader`
+  now collapses to an accessible mobile menu (hamburger, `aria-expanded`/`-controls`, Esc +
+  close-on-navigate) instead of overflowing; new `Avatar` shared component degrades to
+  initials when the image is missing (SSR-safe onError via mount re-check).
 - **Done when:** full site usable end-to-end in Bento, mobile + desktop.
+- **Status: DONE (pending commit).** Gates green (`tsc` 0, Biome clean); all routes SSR 200;
+  Home/About/Work/Contact/404 verified in-browser at mobile+desktop, dark+light; Contact
+  copy-email + vCard `.vcf` download verified working. Built by Sonnet sub-agents (foundation,
+  then 4 pages in parallel), lead-reviewed + integrated. Remaining follow-ups roll to M5:
+  real 404 status, per-route SEO/meta (title still "TanStack Start Starter"), harden `buildVCard`.
 
 ## M5 — SEO, polish, performance
 - ☐ Per-route meta/OG via `seo.ts`; static OG images.

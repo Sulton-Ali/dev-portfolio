@@ -1,3 +1,4 @@
+export { Avatar } from "./Avatar";
 export { ExperienceItem } from "./ExperienceItem";
 export { ProjectCard } from "./ProjectCard";
 export { SiteFooter } from "./SiteFooter";
