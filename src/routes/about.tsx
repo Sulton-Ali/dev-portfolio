@@ -9,8 +9,10 @@ import {
 	Text,
 } from "#/components/primitives";
 import { ExperienceItem, SkillList } from "#/components/shared";
+import { SkillListTerminal } from "#/components/terminal";
 import { experience, profile, skills } from "#/content";
 import { seo } from "#/lib/seo";
+import { useTheme } from "#/theme/ThemeProvider";
 
 export const Route = createFileRoute("/about")({
 	head: () =>
@@ -24,6 +26,8 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+	const { theme } = useTheme();
+
 	return (
 		<Container className="py-8 sm:py-12">
 			<Section>
@@ -53,9 +57,13 @@ function AboutPage() {
 
 			<Section className="pt-0">
 				<Heading level={2}>Skills</Heading>
-				<GlassCard className="mt-6 p-6">
-					<SkillList groups={skills} />
-				</GlassCard>
+				{theme === "terminal" ? (
+					<SkillListTerminal groups={skills} className="mt-6" />
+				) : (
+					<GlassCard className="mt-6 p-6">
+						<SkillList groups={skills} />
+					</GlassCard>
+				)}
 			</Section>
 
 			<Section className="pt-0">

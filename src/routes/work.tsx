@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Container, Heading, Section, Text } from "#/components/primitives";
 import { ProjectCard } from "#/components/shared";
+import { ProjectCardTerminal } from "#/components/terminal";
 import { projects } from "#/content";
 import { seo } from "#/lib/seo";
+import { useTheme } from "#/theme/ThemeProvider";
 
 export const Route = createFileRoute("/work")({
 	head: () =>
@@ -16,6 +18,7 @@ export const Route = createFileRoute("/work")({
 });
 
 function WorkPage() {
+	const { theme } = useTheme();
 	const sortedProjects = [...projects].sort(
 		(a, b) => Number(b.featured) - Number(a.featured),
 	);
@@ -27,11 +30,19 @@ function WorkPage() {
 				<Text variant="muted" className="mt-4">
 					Selected projects — a sample of what I&apos;ve built.
 				</Text>
-				<div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-					{sortedProjects.map((project) => (
-						<ProjectCard key={project.slug} project={project} />
-					))}
-				</div>
+				{theme === "terminal" ? (
+					<div className="mt-8 flex flex-col gap-6">
+						{sortedProjects.map((project) => (
+							<ProjectCardTerminal key={project.slug} project={project} />
+						))}
+					</div>
+				) : (
+					<div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+						{sortedProjects.map((project) => (
+							<ProjectCard key={project.slug} project={project} />
+						))}
+					</div>
+				)}
 			</Section>
 		</Container>
 	);
