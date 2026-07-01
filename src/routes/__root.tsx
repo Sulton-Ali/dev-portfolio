@@ -3,6 +3,7 @@ import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { SiteFooter, SiteHeader } from "#/components/shared";
 import { ThemeBackdrop } from "#/components/ThemeBackdrop";
+import { CommandPaletteMount } from "#/components/terminal";
 import { seo } from "#/lib/seo";
 import { ThemeProvider } from "#/theme/ThemeProvider";
 import { getThemePreferences } from "#/theme/theme-server";
@@ -45,6 +46,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 						Skip to content
 					</a>
 					<ThemeBackdrop />
+					<CommandPaletteMount />
 					<div className="flex min-h-screen flex-col">
 						<SiteHeader />
 						<main id="main" className="flex-1">
