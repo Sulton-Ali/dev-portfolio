@@ -1,11 +1,18 @@
 import type { Social } from "#/content/types";
 
 export const socials: Social[] = [
-	{ platform: "GitHub", url: "https://github.com/<user>", icon: "github" }, // TODO
 	{
 		platform: "LinkedIn",
-		url: "https://linkedin.com/in/<user>",
+		url: "https://www.linkedin.com/in/sultonali-jalolov/",
+		handle: "sultonali-jalolov",
 		icon: "linkedin",
-	}, // TODO
+	},
+	{
+		platform: "Telegram",
+		url: "https://t.me/sultonalijalolov",
+		handle: "@sultonalijalolov",
+		icon: "telegram",
+	},
 	{ platform: "Email", url: "mailto:jssalijalol@gmail.com", icon: "mail" },
+	// TODO: add GitHub — not in résumé; provide a profile URL to include it.
 ];

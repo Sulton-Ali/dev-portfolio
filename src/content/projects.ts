@@ -1,56 +1,29 @@
-// TODO: replace with real projects
+// NOTE: derived from résumé (ADPMS / AGC CRM panels). These roles are on
+// internal/proprietary products, so there are no public repo/live links yet.
+// TODO (Sultonali): confirm titles, years, and add descriptions + any shareable
+// links; add more projects (open-source, personal) with GitHub/live URLs.
 import type { Project } from "#/content/types";
 
 export const projects: Project[] = [
 	{
-		slug: "project-alpha",
-		title: "<Project Alpha>",
+		slug: "adpms",
+		title: "ADPMS — CRM / Admin Panel",
 		summary:
-			"A full-stack web application for managing team workflows and tasks in real time.",
+			"Scalable CRM/admin panel for a fintech product. Performance-focused React architecture (code-splitting, lazy loading, Feature-Sliced Design) that contributed to significant productivity gains for internal teams.",
+		role: "Frontend / Software Engineer",
 		year: 2024,
-		stack: ["React", "TypeScript", "NestJS", "PostgreSQL"],
-		links: [
-			{
-				label: "Repository",
-				url: "https://github.com/<user>/<repo>",
-				kind: "repo",
-			}, // TODO
-			{
-				label: "Live Demo",
-				url: "https://<project>.example.com",
-				kind: "live",
-			}, // TODO
-		],
+		stack: ["React", "TypeScript", "Feature-Sliced Design", "Redux Toolkit"],
+		links: [],
 		featured: true,
 	},
 	{
-		slug: "project-beta",
-		title: "<Project Beta>",
+		slug: "agc",
+		title: "AGC — CRM / Admin Panel",
 		summary:
-			"A REST API service written in Go for high-throughput data ingestion and processing.",
-		year: 2023,
-		stack: ["Go", "PostgreSQL", "Redis", "Docker"],
-		links: [
-			{
-				label: "Repository",
-				url: "https://github.com/<user>/<repo>",
-				kind: "repo",
-			}, // TODO
-		],
-	},
-	{
-		slug: "project-gamma",
-		title: "<Project Gamma>",
-		summary:
-			"An Angular dashboard for visualising analytics data with interactive charts.",
-		year: 2023,
-		stack: ["Angular", "TypeScript", "D3.js"],
-		links: [
-			{
-				label: "Repository",
-				url: "https://github.com/<user>/<repo>",
-				kind: "repo",
-			}, // TODO
-		],
+			"Admin/CRM panel built with a modular, scalable frontend architecture and modern React best practices, delivering a fast and maintainable internal tool.",
+		role: "Frontend / Software Engineer",
+		year: 2024,
+		stack: ["React", "TypeScript", "GraphQL", "SCSS"],
+		links: [],
 	},
 ];

@@ -1,34 +1,50 @@
-// TODO: replace with real experience
 import type { Experience } from "#/content/types";
 
 export const experience: Experience[] = [
 	{
-		company: "<Company>",
-		role: "Full-Stack Engineer",
-		start: "2022-01",
+		company: "Davr Bank",
+		companyUrl: "https://davrbank.uz",
+		role: "Senior Frontend Developer",
+		start: "2025-06",
 		end: "present",
-		location: "<City, Country>",
+		location: "Tashkent, Uzbekistan",
 		summary:
-			"Built and maintained full-stack web applications serving thousands of daily active users.",
+			"Develop and maintain the client side of the bank's web applications, from feature delivery to frontend architecture.",
 		highlights: [
-			"Reduced page load times by 40% through code splitting and lazy loading strategies.",
-			"Designed and shipped a reusable component library adopted across three product teams.",
-			"Led migration from legacy REST API to GraphQL, improving developer experience and type safety.",
+			"Design the conceptual architecture of the frontend system and implement features to spec.",
+			"Refactor and optimize the codebase for performance and maintainability.",
+			"Fix defects and keep the client application stable in production.",
 		],
-		stack: ["React", "TypeScript", "NestJS", "PostgreSQL", "Docker"],
+		stack: ["React", "TypeScript", "Redux Toolkit", "GraphQL", "SCSS"],
 	},
 	{
-		company: "<Previous Company>",
-		role: "Software Engineer",
-		start: "2020-03",
-		end: "2021-12",
-		location: "<City, Country>",
+		company: "Digital Transport Center",
+		companyUrl: "https://dtransport.uz",
+		role: "Chief Specialist",
+		start: "2023-12",
+		end: "2025-06",
+		location: "Tashkent, Uzbekistan",
 		summary:
-			"Developed backend services and REST APIs for a B2B SaaS platform used by enterprise clients.",
+			"Built and evolved software for government digital-transport services, working across the client and server sides.",
 		highlights: [
-			"Built CI/CD pipelines that cut deployment time from 45 minutes to under 5 minutes.",
-			"Implemented a caching layer with Redis, reducing database load by 60%.",
+			"Developed and maintained the client side of web applications.",
+			"Tested databases and the server side of web applications.",
+			"Refactored code and resolved defects to keep systems reliable.",
 		],
-		stack: ["Go", "Java", "PostgreSQL", "Redis", "Kubernetes"],
+		stack: ["React", "TypeScript", "Node.js", "REST API", "Docker"],
+	},
+	{
+		company: "Anorbank",
+		companyUrl: "https://www.anorbank.uz",
+		role: "Chief Specialist, IT Department",
+		start: "2021-02",
+		end: "2023-12",
+		location: "Tashkent, Uzbekistan",
+		summary: "Developed and maintained frontend projects for a digital bank.",
+		highlights: [
+			"Built and shipped frontend features for banking products.",
+			"Maintained and improved existing frontend applications.",
+		],
+		stack: ["React", "JavaScript", "Redux", "SCSS"],
 	},
 ];

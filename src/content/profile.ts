@@ -1,20 +1,22 @@
 import type { Profile } from "#/content/types";
 
 export const profile: Profile = {
-	name: "<Your Name>", // TODO
-	role: "Full-Stack Software Engineer",
+	name: "Sultonali Jalolov",
+	shortName: "Sultonali",
+	role: "Software Engineer",
 	tagline:
-		"I build reliable web products end to end — React/Angular/Vue on the front, NestJS/Go/Java on the back.",
+		"I build high-load web apps with React across fintech and govtech — focused on performance, clean architecture, and developer experience.",
 	bio: [
-		"Full-stack engineer with 6+ years of commercial experience and 8+ years programming.",
-		"I care about clean architecture, performance, and shipping things that hold up in production.",
+		"Software Engineer with 5+ years building high-load products with React in the fintech and government-services domains.",
+		"I've shipped scalable CRM/admin panels that contributed to major productivity gains, applying TypeScript best practices, code-splitting, lazy loading, and Feature-Sliced Design.",
+		"Beyond the frontend I work with Node.js and Go, GraphQL/REST APIs, and DevOps tooling (Docker, Kafka), and I enjoy mentoring, architecture, and leading development.",
 	],
-	location: "<City, Country>", // TODO
-	timezone: "<IANA TZ>", // TODO e.g. "Asia/Tashkent"
+	location: "Tashkent, Uzbekistan",
+	timezone: "Asia/Tashkent",
 	avatarUrl: "/avatar.jpg",
 	email: "jssalijalol@gmail.com",
 	resumeUrl: "/resume.pdf",
 	availability: "open",
-	yearsCommercial: 6,
-	yearsProgramming: 8,
+	yearsCommercial: 5,
+	yearsProgramming: 6, // TODO: confirm — estimated from studies + first commercial work
 };
