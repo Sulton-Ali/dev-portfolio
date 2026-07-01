@@ -74,15 +74,22 @@ Legend: ☐ todo · ◐ in progress · ☑ done
 - ☑ `prefers-reduced-motion` — global CSS neutralizes transitions/animations.
 - **404 status:** best-effort `setResponseStatus(404)` in `$.tsx` `beforeLoad`; Vite dev
   keeps it a soft-404 (200). `noindex` on the page makes it SEO-safe regardless.
-- **Carry-over:** harden `buildVCard` (RFC escaping, `N:`, site `URL:`) — not yet done.
+- ☑ `buildVCard` hardened (RFC escaping, `N:`, site `URL:`) — commit `6a4d39c`.
 - **Done when:** targets met; site feels finished in Bento. (SEO/polish done; Lighthouse
   numbers to confirm post-deploy in M6.)
 
-## M6 — Deploy v1 (Bento)
-- ☐ Node server build; verify `pnpm build && pnpm start` locally.
-- ☐ VPS: systemd unit + reverse proxy + TLS ([Deployment](./06-deployment.md)).
-- ☐ Domain live over HTTPS.
-- **Done when:** Bento portfolio is live on your VPS.
+## M6 — Deploy v1 (Bento) — target: **Netlify** (not VPS)
+Decision: deploy to **Netlify** (VPS unreachable from the dev machine). The generic
+nitro `node-server` preset is unusable anyway — it hangs on every request
+([TanStack/router#5263](https://github.com/TanStack/router/issues/5263)); Netlify is
+TanStack Start's official partner and bypasses it via serverless functions.
+- ☑ Netlify build target wired: `@netlify/vite-plugin-tanstack-start` + `netlify()`
+  in `vite.config.ts`; `netlify.toml` (build `vite build`, publish `dist/client`).
+  Build writes `.netlify/v1/functions/server.mjs`; dev emulation serves all routes 200.
+- ☐ Connect repo to Netlify (or `netlify deploy`); set `VITE_SITE_URL=https://sjalolov.dev`.
+- ☐ Point domain `sjalolov.dev` at Netlify (DNS) + TLS (automatic).
+- ☐ Post-deploy: Lighthouse (Perf/A11y/SEO), confirm 404 status on the live host.
+- **Done when:** Bento portfolio is live over HTTPS on `sjalolov.dev` via Netlify.
 
 ## M7 — Terminal theme
 - ☐ `tokens.css`: Terminal dark+light values.
