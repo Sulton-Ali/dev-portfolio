@@ -14,3 +14,6 @@ todos.json
 
 # Local, machine-specific Claude Code settings
 .claude/settings.local.json
+
+# Local Netlify folder
+.netlify
