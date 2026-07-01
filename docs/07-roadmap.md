@@ -91,13 +91,21 @@ TanStack Start's official partner and bypasses it via serverless functions.
 - ☐ Post-deploy: Lighthouse (Perf/A11y/SEO), confirm 404 status on the live host.
 - **Done when:** Bento portfolio is live over HTTPS on `sjalolov.dev` via Netlify.
 
-## M7 — Terminal theme
-- ☐ `tokens.css`: Terminal dark+light values.
-- ☐ `terminal/` components: `CodeBlock` (syntax highlight), `Prompt`,
-  `CursorBlink`, `GridBackdrop`, `CommandPalette` (Cmd/Ctrl+K, lazy-loaded).
-- ☐ Theme-specific Home hero (code object) + section treatments.
-- ☐ Verify all four pages in Terminal; contrast + a11y; palette keyboard nav.
-- **Done when:** Terminal selectable and complete; redeploy.
+## M7 — Terminal theme ✅
+- ☑ `tokens.css`: Terminal dark + light ("paper console") values — mono font
+  stack, near-square radii, terminal-green accent. Same no-flash strategy.
+- ☑ `terminal/` components: `CodeBlock` (hand-rolled syntax highlight, no lib),
+  `Prompt`, `CursorBlink` (motion-safe), `GridBackdrop`, `CommandPalette`
+  (Cmd/Ctrl+K, lazy-loaded + Terminal-gated). `ThemeBackdrop` dispatches backdrop.
+- ☑ Theme-specific Home hero: `engineer` code object (content-derived) via a
+  theme dispatcher in `index.tsx` (HomeTerminal vs HomeBento). Section headers
+  `~/stats $` etc. Other pages restyle via the token swap (mono/green/sharp).
+- ☑ Verified all pages + 404 in Terminal, dark + light; palette keyboard nav
+  (arrows/Enter/Esc), focus mgmt, terminal-gating; no hydration mismatch.
+- **Done when:** Terminal selectable and complete. ✅ (Built M7a–M7d, committed
+  `5f796b9`→`c324027`.) **Redeploy:** push to trigger Netlify (registry flip makes
+  Terminal live). Optional future polish: bespoke Terminal treatments (git-log
+  project cards, `dependencies` skill list) — token swap already reads well.
 
 ## M8 — Hardening & nice-to-haves (optional)
 - ☐ `/work/:slug` detail pages — **deferred from v1**; build here if revived.

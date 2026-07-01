@@ -100,7 +100,8 @@ Start at [docs/README.md](./docs/README.md). Key docs:
 
 ## Current status
 
-Phase: **M4 — Bento theme + all pages** (next). Done: M0 (scaffold + docs +
-tooling), M1 (content + lib helpers), M2 (theme infra — Bento dark/light, SSR
-no-flash), M3 (primitives + shared components + header/footer/nav + stub routes).
-See [Roadmap](./docs/07-roadmap.md) for the live checklist.
+Phase: **M8 — optional hardening** (next), or Spatial (M9+). Done: M0–M3 (scaffold,
+content, theme infra, primitives/shared), M4 (Bento + all pages), M5 (SEO/OG/sitemap/
+robots/polish), M6 (deployed to **Netlify**, live on **sjalolov.dev**), M7 (**Terminal
+theme** complete — tokens, code-object hero, Cmd/Ctrl+K command palette). Real content
+from résumé is in. See [Roadmap](./docs/07-roadmap.md) for the live checklist.
