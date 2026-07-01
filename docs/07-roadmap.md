@@ -55,19 +55,28 @@ Legend: ☐ todo · ◐ in progress · ☑ done
   close-on-navigate) instead of overflowing; new `Avatar` shared component degrades to
   initials when the image is missing (SSR-safe onError via mount re-check).
 - **Done when:** full site usable end-to-end in Bento, mobile + desktop.
-- **Status: DONE (pending commit).** Gates green (`tsc` 0, Biome clean); all routes SSR 200;
-  Home/About/Work/Contact/404 verified in-browser at mobile+desktop, dark+light; Contact
-  copy-email + vCard `.vcf` download verified working. Built by Sonnet sub-agents (foundation,
-  then 4 pages in parallel), lead-reviewed + integrated. Remaining follow-ups roll to M5:
-  real 404 status, per-route SEO/meta (title still "TanStack Start Starter"), harden `buildVCard`.
+- **Status: DONE + committed** (`9faa27c`). Gates green; verified in-browser. Content
+  populated from résumé in `0f3359a`.
 
 ## M5 — SEO, polish, performance
-- ☐ Per-route meta/OG via `seo.ts`; static OG images.
-- ☐ Sitemap + robots.txt.
-- ☐ Image optimization, font loading strategy.
-- ☐ Lighthouse: Perf ≥95, A11y ≥95, SEO 100 (mobile).
-- ☐ `prefers-reduced-motion` audit.
-- **Done when:** targets met; site feels finished in Bento.
+- ☑ Per-route meta/OG via `seo.ts` + `site.ts` (env-overridable `VITE_SITE_URL`,
+  default `https://sjalolov.dev`). Each route sets title/description/canonical/OG/Twitter;
+  root sets defaults + theme-color + icons/manifest. Single title & canonical per page (verified).
+- ☑ Static OG image `public/og.png` (1200×630, on-brand, generated via headless render).
+- ☑ Sitemap (`routes/sitemap[.]xml.ts`) + robots (`routes/robots[.]txt.ts`) as server
+  routes using the real domain; removed the static `public/robots.txt`.
+- ☑ Font loading: system-font stack (no web fonts) — zero font requests, no FOUT.
+  Image optimization: only assets are user avatar + `og.png` (153 KB) — nothing to optimize.
+- ◐ Lighthouse (Perf/A11y/SEO): SEO fundamentals all in place, but a representative run
+  needs the **production** build — blocked locally by the standalone Nitro server's
+  server-fn self-fetch error (`EADDRNOTAVAIL`/abort). Roll to **M6** (post-deploy) with
+  the server-origin fix.
+- ☑ `prefers-reduced-motion` — global CSS neutralizes transitions/animations.
+- **404 status:** best-effort `setResponseStatus(404)` in `$.tsx` `beforeLoad`; Vite dev
+  keeps it a soft-404 (200). `noindex` on the page makes it SEO-safe regardless.
+- **Carry-over:** harden `buildVCard` (RFC escaping, `N:`, site `URL:`) — not yet done.
+- **Done when:** targets met; site feels finished in Bento. (SEO/polish done; Lighthouse
+  numbers to confirm post-deploy in M6.)
 
 ## M6 — Deploy v1 (Bento)
 - ☐ Node server build; verify `pnpm build && pnpm start` locally.

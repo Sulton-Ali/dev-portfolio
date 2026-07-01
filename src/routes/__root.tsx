@@ -4,6 +4,7 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { GradientBackdrop } from "#/components/bento";
 import { SiteFooter, SiteHeader } from "#/components/shared";
+import { seo } from "#/lib/seo";
 import { ThemeProvider } from "#/theme/ThemeProvider";
 import { getThemePreferences } from "#/theme/theme-server";
 import appCss from "../styles.css?url";
@@ -12,22 +13,18 @@ export const Route = createRootRoute({
 	loader: () => getThemePreferences(),
 	head: () => ({
 		meta: [
-			{
-				charSet: "utf-8",
-			},
-			{
-				name: "viewport",
-				content: "width=device-width, initial-scale=1",
-			},
-			{
-				title: "TanStack Start Starter",
-			},
+			{ charSet: "utf-8" },
+			{ name: "viewport", content: "width=device-width, initial-scale=1" },
+			// Dark is the base palette; matches the browser chrome to the app.
+			{ name: "theme-color", content: "#0a0a0f" },
+			// Site-wide defaults; per-route head() overrides title/description/canonical.
+			...seo().meta,
 		],
 		links: [
-			{
-				rel: "stylesheet",
-				href: appCss,
-			},
+			{ rel: "stylesheet", href: appCss },
+			{ rel: "icon", href: "/favicon.ico" },
+			{ rel: "apple-touch-icon", href: "/logo192.png" },
+			{ rel: "manifest", href: "/manifest.json" },
 		],
 	}),
 	shellComponent: RootDocument,

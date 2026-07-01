@@ -21,8 +21,12 @@ import {
 } from "#/components/shared";
 import type { Profile } from "#/content";
 import { profile, projects, skills, socials } from "#/content";
+import { seo } from "#/lib/seo";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+	head: () => seo({ path: "/" }),
+	component: Home,
+});
 
 const AVAILABILITY_BADGE: Record<
 	Profile["availability"],

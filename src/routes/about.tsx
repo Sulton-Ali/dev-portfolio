@@ -10,8 +10,18 @@ import {
 } from "#/components/primitives";
 import { ExperienceItem, SkillList } from "#/components/shared";
 import { experience, profile, skills } from "#/content";
+import { seo } from "#/lib/seo";
 
-export const Route = createFileRoute("/about")({ component: AboutPage });
+export const Route = createFileRoute("/about")({
+	head: () =>
+		seo({
+			title: "About",
+			description:
+				"About Sultonali Jalolov — 5+ years of React across fintech and govtech (Davr Bank, Digital Transport Center, Anorbank), plus my frontend and backend skills.",
+			path: "/about",
+		}),
+	component: AboutPage,
+});
 
 function AboutPage() {
 	return (

@@ -13,9 +13,19 @@ import {
 import { SocialLinks } from "#/components/shared";
 import type { Profile } from "#/content";
 import { profile, socials } from "#/content";
+import { seo } from "#/lib/seo";
 import { buildVCard } from "#/lib/vcard";
 
-export const Route = createFileRoute("/contact")({ component: ContactPage });
+export const Route = createFileRoute("/contact")({
+	head: () =>
+		seo({
+			title: "Contact",
+			description:
+				"Get in touch with Sultonali Jalolov — email, LinkedIn, Telegram, résumé, and a downloadable vCard.",
+			path: "/contact",
+		}),
+	component: ContactPage,
+});
 
 const AVAILABILITY_BADGE: Record<
 	Profile["availability"],

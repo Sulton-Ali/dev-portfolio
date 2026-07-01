@@ -2,8 +2,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Container, Heading, Section, Text } from "#/components/primitives";
 import { ProjectCard } from "#/components/shared";
 import { projects } from "#/content";
+import { seo } from "#/lib/seo";
 
-export const Route = createFileRoute("/work")({ component: WorkPage });
+export const Route = createFileRoute("/work")({
+	head: () =>
+		seo({
+			title: "Work",
+			description:
+				"Selected projects by Sultonali Jalolov — scalable React CRM/admin panels built for fintech and government products.",
+			path: "/work",
+		}),
+	component: WorkPage,
+});
 
 function WorkPage() {
 	const sortedProjects = [...projects].sort(
