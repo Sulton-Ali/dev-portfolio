@@ -1,6 +1,6 @@
 export const THEMES = [
 	{ id: "bento", label: "Bento", available: true },
-	{ id: "terminal", label: "Terminal", available: false },
+	{ id: "terminal", label: "Terminal", available: true },
 	{ id: "spatial", label: "Spatial", available: false },
 ] as const;
 

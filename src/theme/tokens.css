@@ -95,3 +95,104 @@
 	--warning: var(--l-warning);
 	--danger: var(--l-danger);
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   Terminal theme tokens. Developer-console aesthetic: monospace everywhere,
+   crisp thin borders, near-square corners, terminal-green accent. Same
+   dark-base + light-override strategy as Bento. */
+
+[data-theme="terminal"] {
+	/* Shared (mode-independent) tokens */
+	--font-display:
+		ui-monospace, "JetBrains Mono", "Geist Mono", "Cascadia Code",
+		SFMono-Regular, Menlo, Consolas, monospace;
+	--font-body:
+		ui-monospace, "JetBrains Mono", "Geist Mono", "Cascadia Code",
+		SFMono-Regular, Menlo, Consolas, monospace;
+	--font-mono:
+		ui-monospace, "JetBrains Mono", "Geist Mono", "Cascadia Code",
+		SFMono-Regular, Menlo, Consolas, monospace;
+	/* Near-square corners */
+	--r-sm: 0.125rem;
+	--r-md: 0.1875rem;
+	--r-lg: 0.25rem;
+	--r-xl: 0.375rem;
+	--blur-glass: 0px;
+	--duration-fast: 150ms;
+	--duration-normal: 250ms;
+	--duration-slow: 400ms;
+	--ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+	--shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.25);
+	--shadow-md: 0 2px 8px rgba(0, 0, 0, 0.35);
+	--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+	/* Light palette (paper console), referenced by the light selectors */
+	--l-bg: #f6f7f4;
+	--l-surface: #ffffff;
+	--l-surface-raised: #eef1ea;
+	--l-border: #d8ddd2;
+	--l-fg: #14201a;
+	--l-fg-muted: #55645a;
+	--l-fg-subtle: #7d8a78;
+	--l-accent: #1a7f37;
+	--l-accent-fg: #ffffff;
+	--l-accent-muted: rgba(26, 127, 55, 0.12);
+	--l-ring: #1a7f37;
+	--l-success: #1a7f37;
+	--l-warning: #b45309;
+	--l-danger: #b91c1c;
+
+	/* Dark values (base) */
+	--bg: #0b0e0c;
+	--surface: #11150f;
+	--surface-raised: #161b13;
+	--border: #1f2a1c;
+	--fg: #d7e0d4;
+	--fg-muted: #8b9784;
+	--fg-subtle: #5b6656;
+	--accent: #39d353;
+	--accent-fg: #06120a;
+	--accent-muted: rgba(57, 211, 83, 0.15);
+	--ring: #39d353;
+	--success: #39d353;
+	--warning: #d9a441;
+	--danger: #f0655a;
+}
+
+/* OS prefers light AND no explicit mode choice */
+@media (prefers-color-scheme: light) {
+	[data-theme="terminal"]:not([data-mode]) {
+		--bg: var(--l-bg);
+		--surface: var(--l-surface);
+		--surface-raised: var(--l-surface-raised);
+		--border: var(--l-border);
+		--fg: var(--l-fg);
+		--fg-muted: var(--l-fg-muted);
+		--fg-subtle: var(--l-fg-subtle);
+		--accent: var(--l-accent);
+		--accent-fg: var(--l-accent-fg);
+		--accent-muted: var(--l-accent-muted);
+		--ring: var(--l-ring);
+		--success: var(--l-success);
+		--warning: var(--l-warning);
+		--danger: var(--l-danger);
+	}
+}
+
+/* User explicitly chose light */
+[data-theme="terminal"][data-mode="light"] {
+	--bg: var(--l-bg);
+	--surface: var(--l-surface);
+	--surface-raised: var(--l-surface-raised);
+	--border: var(--l-border);
+	--fg: var(--l-fg);
+	--fg-muted: var(--l-fg-muted);
+	--fg-subtle: var(--l-fg-subtle);
+	--accent: var(--l-accent);
+	--accent-fg: var(--l-accent-fg);
+	--accent-muted: var(--l-accent-muted);
+	--ring: var(--l-ring);
+	--success: var(--l-success);
+	--warning: var(--l-warning);
+	--danger: var(--l-danger);
+}
