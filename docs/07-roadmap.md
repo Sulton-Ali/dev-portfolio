@@ -162,8 +162,35 @@ Deferred in favor of the Spatial theme (M9); revisit after M9 ships.
   switcher path verified in-browser as a fresh visitor (Spatial enabled → click swaps
   theme in place, cookie persists, SSR reload renders `data-theme="spatial"` no-flash,
   scene lazy-mounts); flipped `spatial.available = true`.
+- ☑ **M9d — polish batch** (decided 2026-07-02, before deploy): all inside the existing
+  lazy chunk, zero new deps; every item motion-safe:
+  - ☑ Scroll-linked hero motion — `ParallaxGroup` tracks scroll progress off the
+    canvas's own bounding rect (it exactly fills the hero, since every ancestor in
+    between is `absolute inset-0`), passive scroll listener into a ref, folded into
+    the existing pointer-lerp targets (+up to 0.15 rad yaw, slight z drift).
+  - ☑ Constellation lines — one `<lineSegments>` per hero, pairwise distance pass
+    over the 1400 fixed particle positions computed once in a second `useMemo`
+    (threshold 1.1, nearest-first sort, capped at 1200 segments), rendered under the
+    same rotating `<group>` as the points so they stay attached; color re-tints on
+    mode change like the particles (`--accent-text`).
+  - ☑ Geometry life — outer icosahedron scale-breathes (`1 + 0.04·sin(t·0.5)`) each
+    frame; a second, smaller (0.55×) icosahedron nested inside it counter-rotates at
+    its own rate, opacity 0.25.
+  - ☑ Motion-safe section reveals — new `src/components/spatial/Reveal.tsx` wraps
+    each of HomeSpatial's four post-hero sections. SSR/first paint always render
+    visible (verified: zero `opacity-0`/hidden markup in SSR HTML); client-side only,
+    non-reduced-motion, an `IntersectionObserver` (threshold 0.15) applies the hidden
+    state (opacity 0 + `translate-y-4`) pre-reveal and unobserves after revealing.
+    Verified in-browser: below-fold sections start hidden and reveal on scroll
+    (`opacity`/`translate` computed styles), already-visible sections never hide,
+    and reduced-motion emulation never applies the hidden state at all.
+  - ☑ Verified in-browser (dark + light, Playwright): constellation + dual icosahedra
+    render, scroll-away-and-back keeps the scene healthy with zero console errors,
+    reduced-motion emulation mounts no canvas. Gates green; build chunk split
+    re-verified (HeroScene lazy chunk 234.58 kB → 235.04 kB gz, +0.46 kB; entry chunk
+    unchanged, zero three refs).
 - **Done when:** Spatial selectable in the switcher and meets the perf/a11y bar. ✅
-  (M9a–M9c complete 2026-07-02.) Post-deploy: confirm Lighthouse Home ≥ 90 perf with
+  (M9a–M9d complete 2026-07-02.) Post-deploy: confirm Lighthouse Home ≥ 90 perf with
   the scene on the live host (as with M6, representative numbers need production).
 
 ---

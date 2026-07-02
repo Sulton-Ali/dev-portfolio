@@ -6,6 +6,7 @@ import {
 	StatStrip,
 } from "#/components/shared";
 import { HeroFallback } from "#/components/spatial/HeroFallback";
+import { Reveal } from "#/components/spatial/Reveal";
 import { profile, projects, skills, socials } from "#/content";
 
 const stats = [
@@ -25,53 +26,61 @@ export function HomeSpatial() {
 		<Container className="py-8 sm:py-12">
 			<HeroFallback />
 
-			<section className="mt-16">
-				<Heading level={2} size={4}>
-					By the numbers
-				</Heading>
-				<div className="mt-6">
-					<StatStrip stats={stats} />
-				</div>
-			</section>
+			<Reveal className="mt-16">
+				<section>
+					<Heading level={2} size={4}>
+						By the numbers
+					</Heading>
+					<div className="mt-6">
+						<StatStrip stats={stats} />
+					</div>
+				</section>
+			</Reveal>
 
-			<section className="mt-16">
-				<Heading level={2} size={4}>
-					Stack
-				</Heading>
-				<div className="mt-6">
-					<SkillList groups={skills} />
-				</div>
-			</section>
+			<Reveal className="mt-16">
+				<section>
+					<Heading level={2} size={4}>
+						Stack
+					</Heading>
+					<div className="mt-6">
+						<SkillList groups={skills} />
+					</div>
+				</section>
+			</Reveal>
 
-			<section className="mt-16">
-				<Heading level={2} size={4}>
-					Featured
-				</Heading>
-				<div className="mt-6 grid gap-4 sm:grid-cols-2">
-					{featuredProjects.map((project) => (
-						<ProjectCard
-							key={project.slug}
-							project={project}
-							headingLevel={3}
-						/>
-					))}
-				</div>
-			</section>
+			<Reveal className="mt-16">
+				<section>
+					<Heading level={2} size={4}>
+						Featured
+					</Heading>
+					<div className="mt-6 grid gap-4 sm:grid-cols-2">
+						{featuredProjects.map((project) => (
+							<ProjectCard
+								key={project.slug}
+								project={project}
+								headingLevel={3}
+							/>
+						))}
+					</div>
+				</section>
+			</Reveal>
 
-			<section className="mt-16">
-				<Heading level={2} size={4}>
-					Connect
-				</Heading>
-				<div className="mt-6 flex flex-wrap items-center gap-4">
-					<SocialLinks socials={socials} />
-					<a
-						href={profile.resumeUrl}
-						className="text-sm text-muted underline-offset-4 hover:text-foreground hover:underline"
-					>
-						Résumé
-					</a>
-				</div>
-			</section>
+			<Reveal className="mt-16">
+				<section>
+					<Heading level={2} size={4}>
+						Connect
+					</Heading>
+					<div className="mt-6 flex flex-wrap items-center gap-4">
+						<SocialLinks socials={socials} />
+						<a
+							href={profile.resumeUrl}
+							className="text-sm text-muted underline-offset-4 hover:text-foreground hover:underline"
+						>
+							Résumé
+						</a>
+					</div>
+				</section>
+			</Reveal>
 		</Container>
 	);
 }
