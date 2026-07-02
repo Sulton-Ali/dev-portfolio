@@ -206,3 +206,129 @@
 	--warning: var(--l-warning);
 	--danger: var(--l-danger);
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   Spatial theme tokens. Animation-forward, depth-first aesthetic: dark mode
+   reads as deep space, light mode as a hazy daylight sky. Violet/indigo
+   accent, large radii, soft glow shadows. Same dark-base + light-override
+   strategy as Bento/Terminal. Two extra decorative tokens
+   (--backdrop-glow-1/2) feed the static CSS nebula backdrop.
+
+   Deviation from the doc palette (docs/03-themes.md Theme C): dark --accent
+   was darkened from #8b5cf6 to #7c3aed (violet-600) — the proposed #8b5cf6
+   only reached a 4.23:1 contrast against white --accent-fg, short of the
+   4.5:1 AA gate for small text/icons on solid accent buttons. --accent-muted
+   was retinted to the same violet-600 RGB for hue consistency. The doc table
+   was updated to match. */
+
+[data-theme="spatial"] {
+	/* Shared (mode-independent) tokens */
+	--font-display:
+		ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--font-body:
+		ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--font-mono:
+		ui-monospace, "JetBrains Mono", "Geist Mono", SFMono-Regular, monospace;
+	/* Bento-like radii, slightly larger for a softer, "floating" feel */
+	--r-sm: 0.5rem;
+	--r-md: 0.75rem;
+	--r-lg: 1.25rem;
+	--r-xl: 1.75rem;
+	--blur-glass: 16px;
+	--duration-fast: 150ms;
+	--duration-normal: 250ms;
+	--duration-slow: 400ms;
+	--ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+	/* Soft violet-glow elevation instead of plain black shadows */
+	--shadow-sm: 0 1px 2px rgba(5, 5, 20, 0.4);
+	--shadow-md:
+		0 8px 30px rgba(139, 92, 246, 0.15), 0 4px 16px rgba(5, 5, 20, 0.35);
+	--shadow-lg:
+		0 24px 70px rgba(139, 92, 246, 0.2), 0 12px 40px rgba(5, 5, 20, 0.4);
+
+	/* Light palette ("daylight sky"), referenced by the light selectors */
+	--l-bg: #f5f5fb;
+	--l-surface: rgba(255, 255, 255, 0.75);
+	--l-surface-raised: #ffffff;
+	--l-border: rgba(76, 29, 149, 0.14);
+	--l-fg: #171728;
+	--l-fg-muted: #4f4f66;
+	--l-fg-subtle: #65657c;
+	--l-accent: #6d28d9;
+	--l-accent-fg: #ffffff;
+	--l-accent-muted: rgba(109, 40, 217, 0.12);
+	--l-accent-text: #6d28d9;
+	--l-ring: #7c3aed;
+	--l-success: #16a34a;
+	--l-warning: #d97706;
+	--l-danger: #dc2626;
+	--l-backdrop-glow-1: rgba(139, 92, 246, 0.18);
+	--l-backdrop-glow-2: rgba(99, 102, 241, 0.14);
+	--l-backdrop-glow-3: rgba(168, 85, 247, 0.1);
+
+	/* Dark values (base), "deep space" */
+	--bg: #050514;
+	--surface: rgba(139, 92, 246, 0.06);
+	--surface-raised: rgba(139, 92, 246, 0.1);
+	--border: rgba(167, 139, 250, 0.16);
+	--fg: #ececf6;
+	--fg-muted: #a3a3be;
+	--fg-subtle: #71718e;
+	--accent: #7c3aed;
+	--accent-fg: #ffffff;
+	--accent-muted: rgba(124, 58, 237, 0.16);
+	--accent-text: #c4b5fd;
+	--ring: #a78bfa;
+	--success: #22c55e;
+	--warning: #f59e0b;
+	--danger: #ef4444;
+	--backdrop-glow-1: rgba(139, 92, 246, 0.35);
+	--backdrop-glow-2: rgba(99, 102, 241, 0.25);
+	--backdrop-glow-3: rgba(168, 85, 247, 0.18);
+}
+
+/* OS prefers light AND no explicit mode choice */
+@media (prefers-color-scheme: light) {
+	[data-theme="spatial"]:not([data-mode]) {
+		--bg: var(--l-bg);
+		--surface: var(--l-surface);
+		--surface-raised: var(--l-surface-raised);
+		--border: var(--l-border);
+		--fg: var(--l-fg);
+		--fg-muted: var(--l-fg-muted);
+		--fg-subtle: var(--l-fg-subtle);
+		--accent: var(--l-accent);
+		--accent-fg: var(--l-accent-fg);
+		--accent-muted: var(--l-accent-muted);
+		--accent-text: var(--l-accent-text);
+		--ring: var(--l-ring);
+		--success: var(--l-success);
+		--warning: var(--l-warning);
+		--danger: var(--l-danger);
+		--backdrop-glow-1: var(--l-backdrop-glow-1);
+		--backdrop-glow-2: var(--l-backdrop-glow-2);
+		--backdrop-glow-3: var(--l-backdrop-glow-3);
+	}
+}
+
+/* User explicitly chose light */
+[data-theme="spatial"][data-mode="light"] {
+	--bg: var(--l-bg);
+	--surface: var(--l-surface);
+	--surface-raised: var(--l-surface-raised);
+	--border: var(--l-border);
+	--fg: var(--l-fg);
+	--fg-muted: var(--l-fg-muted);
+	--fg-subtle: var(--l-fg-subtle);
+	--accent: var(--l-accent);
+	--accent-fg: var(--l-accent-fg);
+	--accent-muted: var(--l-accent-muted);
+	--accent-text: var(--l-accent-text);
+	--ring: var(--l-ring);
+	--success: var(--l-success);
+	--warning: var(--l-warning);
+	--danger: var(--l-danger);
+	--backdrop-glow-1: var(--l-backdrop-glow-1);
+	--backdrop-glow-2: var(--l-backdrop-glow-2);
+	--backdrop-glow-3: var(--l-backdrop-glow-3);
+}

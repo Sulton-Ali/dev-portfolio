@@ -1,4 +1,5 @@
 import { GradientBackdrop } from "#/components/bento";
+import { SpatialBackdrop } from "#/components/spatial";
 import { GridBackdrop } from "#/components/terminal";
 import { useTheme } from "#/theme/ThemeProvider";
 
@@ -7,5 +8,7 @@ import { useTheme } from "#/theme/ThemeProvider";
 // server with no flash.
 export function ThemeBackdrop() {
 	const { theme } = useTheme();
-	return theme === "terminal" ? <GridBackdrop /> : <GradientBackdrop />;
+	if (theme === "terminal") return <GridBackdrop />;
+	if (theme === "spatial") return <SpatialBackdrop />;
+	return <GradientBackdrop />;
 }

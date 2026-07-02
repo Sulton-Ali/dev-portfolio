@@ -159,13 +159,13 @@ gentle cursor parallax. Dark mode reads as deep space; light mode as a hazy
 | `--surface` | `rgba(139, 92, 246, 0.06)` |
 | `--surface-raised` | `rgba(139, 92, 246, 0.10)` |
 | `--border` | `rgba(167, 139, 250, 0.16)` |
-| `--foreground` | `#ececf6` |
-| `--muted` | `#a3a3be` |
-| `--subtle` | `#71718e` |
-| `--accent` | `#8b5cf6` (violet) |
-| `--accent-fg` | `#ffffff` |
-| `--accent-muted` | `rgba(139, 92, 246, 0.16)` |
-| `--accent-text` | `#c4b5fd` (must be ≥ 4.5:1 on bg and on accent-muted pill) |
+| `--foreground` | `#ececf6` (17.24:1 on bg) |
+| `--muted` | `#a3a3be` (8.23:1 on bg) |
+| `--subtle` | `#71718e` (4.29:1 on bg) |
+| `--accent` | `#7c3aed` (violet-600 — darkened from the originally proposed `#8b5cf6`; that value only reached 4.23:1 against white `--accent-fg`, short of the 4.5:1 AA gate) |
+| `--accent-fg` | `#ffffff` (5.70:1 on accent) |
+| `--accent-muted` | `rgba(124, 58, 237, 0.16)` (retinted to match `--accent`) |
+| `--accent-text` | `#c4b5fd` (10.96:1 on bg; 9.86:1 on accent-muted composited over bg) |
 | `--ring` | `#a78bfa` |
 
 **Light mode ("daylight sky")**
@@ -174,15 +174,21 @@ gentle cursor parallax. Dark mode reads as deep space; light mode as a hazy
 | `--background` | `#f5f5fb` |
 | `--surface` | `rgba(255, 255, 255, 0.75)` |
 | `--border` | `rgba(76, 29, 149, 0.14)` |
-| `--foreground` | `#171728` |
-| `--muted` | `#4f4f66` |
+| `--foreground` | `#171728` (16.25:1 on bg) |
+| `--muted` | `#4f4f66` (7.32:1 on bg) |
+| `--subtle` | `#65657c` (5.22:1 on bg) |
 | `--accent` | `#6d28d9` |
-| `--accent-fg` | `#ffffff` |
-| `--accent-text` | `#6d28d9` (verify ≥ 4.5:1 on the pill fill; darken if short) |
+| `--accent-fg` | `#ffffff` (7.10:1 on accent) |
+| `--accent-muted` | `rgba(109, 40, 217, 0.12)` |
+| `--accent-text` | `#6d28d9` (6.54:1 on bg; 5.39:1 on accent-muted composited over bg) |
+| `--ring` | `#7c3aed` |
 
-Values are the starting point; adjust during contrast verification (AA is the
-gate, per the checklist below). Success/warning/danger: reuse Bento's values
-tinted only if needed.
+Values are the starting point; adjusted during contrast verification (AA is the
+gate, per the checklist below) — see the dark `--accent` note above, the only
+deviation from the original proposal. `--subtle` (dark and light) and light
+`--ring` were not specified in the original proposal and were filled in during
+implementation. Success/warning/danger reuse Bento's values as-is (dark:
+`#22c55e` / `#f59e0b` / `#ef4444`; light: `#16a34a` / `#d97706` / `#dc2626`).
 
 ### Typography
 System font stack, same as the rest of the site (no web fonts — this is a hard

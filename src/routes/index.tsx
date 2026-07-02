@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { HomeBento } from "#/components/bento";
+import { HomeSpatial } from "#/components/spatial";
 import { HomeTerminal } from "#/components/terminal";
 import { seo } from "#/lib/seo";
 import { useTheme } from "#/theme/ThemeProvider";
@@ -11,5 +12,7 @@ export const Route = createFileRoute("/")({
 
 function Home() {
 	const { theme } = useTheme();
-	return theme === "terminal" ? <HomeTerminal /> : <HomeBento />;
+	if (theme === "terminal") return <HomeTerminal />;
+	if (theme === "spatial") return <HomeSpatial />;
+	return <HomeBento />;
 }

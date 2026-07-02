@@ -138,11 +138,14 @@ Deferred in favor of the Spatial theme (M9); revisit after M9 ships.
 - ☐ Healthcheck route + uptime monitor.
 
 ## M9 — Spatial theme — **IN PROGRESS** (design decided 2026-07-02, see [Themes](./03-themes.md))
-- ☐ **M9a — tokens + static theme (no 3D yet):** Spatial dark+light token blocks in
-  `tokens.css` (incl. `--accent-text`, AA-verified); `SpatialBackdrop` (CSS nebula) wired
-  into `ThemeBackdrop`; `HomeSpatial` static hero + sections wired into the `index.tsx`
-  dispatcher; all pages render correctly under the spatial cookie. Registry stays
-  `available: false` (preview via cookie).
+- ☑ **M9a — tokens + static theme (no 3D yet):** Spatial dark+light token blocks in
+  `tokens.css` (all pairings AA-computed; dark `--accent` darkened to `#7c3aed` — the
+  doc's `#8b5cf6` failed 4.5:1 vs white); `SpatialBackdrop` (CSS nebula via
+  `--backdrop-glow-1/2/3`) in `ThemeBackdrop`; `HomeSpatial` (static `HeroFallback` with
+  a `data-slot="scene"` mount point for M9b + shared-component sections) in the
+  `index.tsx` dispatcher. All pages verified under the spatial cookie (dark+light,
+  in-browser); heading order clean; bento/terminal unaffected. Registry stays
+  `available: false` (preview via cookie). Built by Sonnet, lead-reviewed.
 - ☐ **M9b — R3F hero scene:** `three` + `@react-three/fiber` v9 (no drei); client-only
   lazy chunk; particle field + wireframe geometry + cursor parallax; reduced-motion ⇒
   static fallback stays; frameloop pauses when tab hidden.
