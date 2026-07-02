@@ -1,3 +1,5 @@
+import { createIsomorphicFn } from "@tanstack/react-start";
+import { getCookie } from "@tanstack/react-start/server";
 import {
 	DEFAULT_THEME,
 	isThemeId,
@@ -22,23 +24,25 @@ function readClientCookie(name: string): string | undefined {
 	return undefined;
 }
 
-// Resolve the persisted theme + mode from cookies for the root loader.
-// Isomorphic: on the server it reads the request cookies in-process (guarded
-// dynamic import keeps the server-only module out of the client bundle); on the
-// client it reads document.cookie. Reading in-process avoids a server-function
-// self-fetch during SSR, which the standalone Node server cannot service.
-export async function getThemePreferences(): Promise<ThemePreferences> {
-	let themeCookie: string | undefined;
-	let modeCookie: string | undefined;
+// Isomorphic cookie read: on the server it reads the request cookies
+// in-process (avoids a server-function self-fetch during SSR); on the client
+// it reads document.cookie. The Start compiler strips the server branch — and
+// the server-only `getCookie` import — from the client bundle, which is what
+// the previous `if (import.meta.env.SSR) await import(...)` guard emulated
+// before the import-protection plugin started rejecting it.
+const readThemeCookies = createIsomorphicFn()
+	.server(() => ({
+		theme: getCookie(THEME_COOKIE),
+		mode: getCookie(MODE_COOKIE),
+	}))
+	.client(() => ({
+		theme: readClientCookie(THEME_COOKIE),
+		mode: readClientCookie(MODE_COOKIE),
+	}));
 
-	if (import.meta.env.SSR) {
-		const { getCookie } = await import("@tanstack/react-start/server");
-		themeCookie = getCookie(THEME_COOKIE);
-		modeCookie = getCookie(MODE_COOKIE);
-	} else {
-		themeCookie = readClientCookie(THEME_COOKIE);
-		modeCookie = readClientCookie(MODE_COOKIE);
-	}
+// Resolve the persisted theme + mode from cookies for the root loader.
+export function getThemePreferences(): ThemePreferences {
+	const { theme: themeCookie, mode: modeCookie } = readThemeCookies();
 
 	const theme = isThemeId(themeCookie) ? themeCookie : DEFAULT_THEME;
 	const mode =
