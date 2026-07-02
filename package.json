@@ -16,6 +16,7 @@
     "check": "biome check"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.6.1",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",
     "@tanstack/react-router": "latest",
@@ -28,7 +29,8 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.5",
@@ -41,6 +43,7 @@
     "@types/node": "^22.10.2",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "@types/three": "^0.185.0",
     "@vitejs/plugin-react": "^6.0.1",
     "jsdom": "^28.1.0",
     "typescript": "^6.0.2",

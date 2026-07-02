@@ -146,9 +146,17 @@ Deferred in favor of the Spatial theme (M9); revisit after M9 ships.
   `index.tsx` dispatcher. All pages verified under the spatial cookie (dark+light,
   in-browser); heading order clean; bento/terminal unaffected. Registry stays
   `available: false` (preview via cookie). Built by Sonnet, lead-reviewed.
-- ☐ **M9b — R3F hero scene:** `three` + `@react-three/fiber` v9 (no drei); client-only
-  lazy chunk; particle field + wireframe geometry + cursor parallax; reduced-motion ⇒
-  static fallback stays; frameloop pauses when tab hidden.
+- ☑ **M9b — R3F hero scene:** `three@0.185` + `@react-three/fiber@9.6` (no drei);
+  `HeroScene` (1400-particle field + wireframe icosahedron + cursor parallax, colors
+  read from CSS tokens at runtime, re-tinted on mode change) behind `SceneMount`
+  (client-only lazy gate: never mounts under reduced-motion — live-tracked; unmounts
+  when the hero scrolls off-screen; fade-in). Chunk split verified: entry ~95 kB gz
+  with zero three refs; scene = separate 235 kB gz lazy chunk; bento/terminal never
+  request it. SSR render confirmed three-free. Verified in-browser dark+light +
+  reduced-motion emulation. Built by Sonnet, lead-reviewed.
+  Known dev-only noise: upstream `THREE.Clock` deprecation from fiber 9.6, and a
+  console echo loop between devtools-vite client-log piping and Vite server-log
+  forwarding (pre-existing; absent in production builds).
 - ☐ **M9c — gates + ship:** chunk-split verified (bento/terminal bundles unchanged;
   scene loads only on Spatial Home); browser pass (mobile+desktop, dark+light, all
   pages); Lighthouse Home ≥ 90 perf with scene; flip `spatial.available = true`.

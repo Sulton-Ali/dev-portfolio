@@ -5,6 +5,7 @@ import {
 	Link,
 	Text,
 } from "#/components/primitives";
+import { SceneMount } from "#/components/spatial/SceneMount";
 import type { Profile } from "#/content";
 import { profile } from "#/content";
 
@@ -19,8 +20,9 @@ const AVAILABILITY_BADGE: Record<
 
 // Static hero content layer for the Spatial theme. Renders on the server and
 // on first paint; this is also the permanent hero under prefers-reduced-motion.
-// The empty `data-slot="scene"` div behind the content is where M9b mounts the
-// lazy client-only React Three Fiber canvas — it stays empty and inert here.
+// The `data-slot="scene"` div behind the content is where the lazy,
+// client-only React Three Fiber canvas mounts (see SceneMount) — it stays
+// empty and inert until SceneMount decides it's safe to render into it.
 export function HeroFallback() {
 	const availability = AVAILABILITY_BADGE[profile.availability];
 
@@ -30,7 +32,9 @@ export function HeroFallback() {
 				aria-hidden="true"
 				data-slot="scene"
 				className="pointer-events-none absolute inset-0 -z-10"
-			/>
+			>
+				<SceneMount />
+			</div>
 			<div
 				aria-hidden="true"
 				className="pointer-events-none absolute inset-0 -z-10"

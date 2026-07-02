@@ -3,3 +3,5 @@ allowBuilds:
   esbuild: true
   lightningcss: true
   sharp: true
+minimumReleaseAgeExclude:
+  - three@0.185.1
