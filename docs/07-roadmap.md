@@ -108,8 +108,8 @@ TanStack Start's official partner and bypasses it via serverless functions.
       `headingLevel`; Terminal Home got an sr-only h1. No level skips on any page
       (verified via SSR HTML, both themes).
     - Verified in-browser (Bento light+dark, Terminal light); gates green.
-- **M6 CLOSED (2026-07-02).** Live-host re-check of the 404 status + a Lighthouse a11y
-  re-run happen after the next deploy.
+- **M6 CLOSED (2026-07-02).** Deployed; live host re-checked — `/nonexistent` returns a
+  real **404**. (Optional: Lighthouse a11y re-run to confirm the 100s.)
 - **Done when:** Bento portfolio is live over HTTPS on `sjalolov.dev` via Netlify.
 
 ## M7 — Terminal theme ✅
@@ -137,9 +137,19 @@ Deferred in favor of the Spatial theme (M9); revisit after M9 ships.
 - ☐ Privacy-friendly analytics.
 - ☐ Healthcheck route + uptime monitor.
 
-## M9 — Spatial theme — **NEXT** (after the M6 close-out)
-- ☐ R3F hero with reduced-motion fallback; lazy-loaded; perf-budgeted.
-- ☐ Flip `spatial.available = true` in registry once it meets the bar.
+## M9 — Spatial theme — **IN PROGRESS** (design decided 2026-07-02, see [Themes](./03-themes.md))
+- ☐ **M9a — tokens + static theme (no 3D yet):** Spatial dark+light token blocks in
+  `tokens.css` (incl. `--accent-text`, AA-verified); `SpatialBackdrop` (CSS nebula) wired
+  into `ThemeBackdrop`; `HomeSpatial` static hero + sections wired into the `index.tsx`
+  dispatcher; all pages render correctly under the spatial cookie. Registry stays
+  `available: false` (preview via cookie).
+- ☐ **M9b — R3F hero scene:** `three` + `@react-three/fiber` v9 (no drei); client-only
+  lazy chunk; particle field + wireframe geometry + cursor parallax; reduced-motion ⇒
+  static fallback stays; frameloop pauses when tab hidden.
+- ☐ **M9c — gates + ship:** chunk-split verified (bento/terminal bundles unchanged;
+  scene loads only on Spatial Home); browser pass (mobile+desktop, dark+light, all
+  pages); Lighthouse Home ≥ 90 perf with scene; flip `spatial.available = true`.
+- **Done when:** Spatial selectable in the switcher and meets the perf/a11y bar.
 
 ---
 

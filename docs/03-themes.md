@@ -141,19 +141,77 @@ Optional **command palette (Cmd/Ctrl+K)** for navigation — perfectly on-theme.
 
 ---
 
-## Theme C — Spatial (future, designed-for not built)
+## Theme C — Spatial (building in M9)
 
 ### Concept
-Animation-forward 3D hero (React Three Fiber): floating geometry / particle field
-reacting to cursor, scroll-driven section transitions. Highest effort and
-performance risk; deferred to a later phase.
+Animation-forward, depth-first. The Home hero is a **3D scene (React Three
+Fiber)**: an instanced particle field + slowly rotating wireframe geometry with
+gentle cursor parallax. Dark mode reads as deep space; light mode as a hazy
+"daylight sky". Everything outside the hero differentiates through tokens
+(soft glows, large radii, violet accent) — same content, same components.
 
-### Notes for future
-- Lazy-load the R3F scene; never block SSR/first paint.
-- Mandatory `prefers-reduced-motion` fallback to a static hero.
-- Performance budget gate before shipping.
-- Will reuse the exact same content model and token contract — it's just another
-  theme entry flipped to `available: true`.
+### Palette (decided 2026-07-02)
+
+**Dark mode ("deep space")**
+| Token | Value |
+|-------|-------|
+| `--background` | `#050514` |
+| `--surface` | `rgba(139, 92, 246, 0.06)` |
+| `--surface-raised` | `rgba(139, 92, 246, 0.10)` |
+| `--border` | `rgba(167, 139, 250, 0.16)` |
+| `--foreground` | `#ececf6` |
+| `--muted` | `#a3a3be` |
+| `--subtle` | `#71718e` |
+| `--accent` | `#8b5cf6` (violet) |
+| `--accent-fg` | `#ffffff` |
+| `--accent-muted` | `rgba(139, 92, 246, 0.16)` |
+| `--accent-text` | `#c4b5fd` (must be ≥ 4.5:1 on bg and on accent-muted pill) |
+| `--ring` | `#a78bfa` |
+
+**Light mode ("daylight sky")**
+| Token | Value |
+|-------|-------|
+| `--background` | `#f5f5fb` |
+| `--surface` | `rgba(255, 255, 255, 0.75)` |
+| `--border` | `rgba(76, 29, 149, 0.14)` |
+| `--foreground` | `#171728` |
+| `--muted` | `#4f4f66` |
+| `--accent` | `#6d28d9` |
+| `--accent-fg` | `#ffffff` |
+| `--accent-text` | `#6d28d9` (verify ≥ 4.5:1 on the pill fill; darken if short) |
+
+Values are the starting point; adjust during contrast verification (AA is the
+gate, per the checklist below). Success/warning/danger: reuse Bento's values
+tinted only if needed.
+
+### Typography
+System font stack, same as the rest of the site (no web fonts — this is a hard
+site-wide constraint). Spatial differentiates via the scene and tokens, not type.
+
+### Signature styling
+- Large radii (Bento-like or slightly larger), soft violet glow shadows.
+- Backdrop (`SpatialBackdrop`): static CSS nebula — layered radial gradients;
+  cheap, SSR-safe, and doubles as the reduced-motion aesthetic.
+
+### Structural layout
+- **Home** (`HomeSpatial`): full-width hero (3D scene behind identity/pitch/CTAs)
+  followed by conventional sections (stats, stack, featured, connect) reusing
+  shared components.
+- About / Work / Contact restyle purely via the token swap (like Terminal did
+  pre-polish). Bespoke treatments only if cheap.
+
+### 3D implementation rules (the contract)
+- Deps: `three` + `@react-three/fiber` v9 (React 19). **No drei** — the scene is
+  simple; keep the chunk small.
+- The scene is **client-only and lazy** (`React.lazy` + mounted-state gate):
+  SSR and first paint always render the static fallback hero; the scene fades in
+  when ready. Bento/Terminal bundles must not grow at all (verify chunk split in
+  the build output).
+- `prefers-reduced-motion` ⇒ never mount the scene (static fallback is the
+  permanent hero). Also pause the frameloop when the tab is hidden.
+- Performance budget gate before flipping `available: true`: lazy chunk loads
+  only on Spatial Home; no long-task jank on mid-range hardware; Lighthouse perf
+  on Home stays ≥ 90 mobile with the scene mounted.
 
 ---
 
