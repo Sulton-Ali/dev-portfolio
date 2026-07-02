@@ -100,7 +100,8 @@ Start at [docs/README.md](./docs/README.md). Key docs:
 
 ## Current status
 
-Phase: **M8 — optional hardening** (next), or Spatial (M9+). Done: M0–M3 (scaffold,
+Phase: **M6 close-out** (Lighthouse + live 404 re-check), then **M9 — Spatial theme**.
+M8 (hardening) is **deferred** (decision 2026-07-02). Done: M0–M3 (scaffold,
 content, theme infra, primitives/shared), M4 (Bento + all pages), M5 (SEO/OG/sitemap/
 robots/polish), M6 (deployed to **Netlify**, live on **sjalolov.dev**), M7 (**Terminal
 theme** complete — tokens, code-object hero, Cmd/Ctrl+K command palette). Real content

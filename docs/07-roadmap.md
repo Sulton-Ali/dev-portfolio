@@ -48,8 +48,8 @@ Legend: ☐ todo · ◐ in progress · ☑ done
 - ☑ Build **About** (bio prose, experience timeline, skills — as glass cards).
 - ☑ Build **Work** (project grid; featured-first; cards link to repo/live — no detail pages in v1; no tag filter).
 - ☑ Build **Contact** (email + copy-to-clipboard, socials, résumé, vCard `.vcf` download, availability badge).
-- ◐ 404 page: catch-all splat route (`routes/$.tsx`) renders on-theme `NotFound` through the
-  shell. Follow-up (M5/SEO): responds `200` — wire a real `404` status server-side.
+- ☑ 404 page: catch-all splat route (`routes/$.tsx`) renders on-theme `NotFound` through the
+  shell. Real `404` status wired in the M6 close-out (thrown `notFound()` — see M6).
 - ☑ Responsive + a11y pass (Playwright MCP, mobile+desktop, dark+light). Fixes: `SiteHeader`
   now collapses to an accessible mobile menu (hamburger, `aria-expanded`/`-controls`, Esc +
   close-on-navigate) instead of overflowing; new `Avatar` shared component degrades to
@@ -72,8 +72,8 @@ Legend: ☐ todo · ◐ in progress · ☑ done
   server-fn self-fetch error (`EADDRNOTAVAIL`/abort). Roll to **M6** (post-deploy) with
   the server-origin fix.
 - ☑ `prefers-reduced-motion` — global CSS neutralizes transitions/animations.
-- **404 status:** best-effort `setResponseStatus(404)` in `$.tsx` `beforeLoad`; Vite dev
-  keeps it a soft-404 (200). `noindex` on the page makes it SEO-safe regardless.
+- **404 status:** fixed in the M6 close-out — `$.tsx` now throws `notFound()` from its
+  loader (`notFoundComponent` renders through the shell); returns a real `404` + `noindex`.
 - ☑ `buildVCard` hardened (RFC escaping, `N:`, site `URL:`) — commit `6a4d39c`.
 - **Done when:** targets met; site feels finished in Bento. (SEO/polish done; Lighthouse
   numbers to confirm post-deploy in M6.)
@@ -86,9 +86,21 @@ TanStack Start's official partner and bypasses it via serverless functions.
 - ☑ Netlify build target wired: `@netlify/vite-plugin-tanstack-start` + `netlify()`
   in `vite.config.ts`; `netlify.toml` (build `vite build`, publish `dist/client`).
   Build writes `.netlify/v1/functions/server.mjs`; dev emulation serves all routes 200.
-- ☐ Connect repo to Netlify (or `netlify deploy`); set `VITE_SITE_URL=https://sjalolov.dev`.
-- ☐ Point domain `sjalolov.dev` at Netlify (DNS) + TLS (automatic).
-- ☐ Post-deploy: Lighthouse (Perf/A11y/SEO), confirm 404 status on the live host.
+- ☑ Connect repo to Netlify; set `VITE_SITE_URL=https://sjalolov.dev`.
+- ☑ Point domain `sjalolov.dev` at Netlify (DNS) + TLS (automatic). **Site is LIVE.**
+- ◐ Post-deploy close-out (2026-07-02):
+  - ☑ 404 status: live host returned soft-404 (`200`) — fixed by throwing `notFound()`
+    from the `$.tsx` loader (idiomatic TanStack Start; `setResponseStatus` hack removed).
+    Verified locally via Netlify dev emulation: unknown paths → `404`, all real routes `200`,
+    shell + `noindex` intact. Re-verify on the live host after next deploy.
+  - ☑ Lighthouse against live `sjalolov.dev` (4 pages × mobile+desktop, 2026-07-02):
+    Perf 96–100 · Best-Practices 100 · SEO 100 · A11y 92–98. Home mobile CWV: LCP 1.4 s,
+    TBT 0 ms, CLS 0. Home TTFB flagged (2.4 s mobile) = Netlify function cold start, not
+    app code. Deferred (revisit with M8): ~38 KB unused JS in the main bundle
+    (route-level splitting), 6 KB render-blocking CSS (negligible).
+  - ◐ A11y fixes from the audit: `color-contrast` — accent `#6366f1` as text on dark
+    badge/pill backgrounds is 2.8–3.5:1 (needs ≥ 4.5:1), all pages; `heading-order` —
+    h4 skips a level after h2 on Home/Work.
 - **Done when:** Bento portfolio is live over HTTPS on `sjalolov.dev` via Netlify.
 
 ## M7 — Terminal theme ✅
@@ -109,13 +121,14 @@ TanStack Start's official partner and bypasses it via serverless functions.
 - **Done when:** Terminal selectable and complete. ✅ (Built M7a–M7d + polish,
   committed `5f796b9`→`0191b86`.) Terminal is LIVE on sjalolov.dev.
 
-## M8 — Hardening & nice-to-haves (optional)
+## M8 — Hardening & nice-to-haves — **DEFERRED** (decision 2026-07-02)
+Deferred in favor of the Spatial theme (M9); revisit after M9 ships.
 - ☐ `/work/:slug` detail pages — **deferred from v1**; build here if revived.
 - ☐ CI/CD pipeline (GitHub Actions → VPS) and/or Dockerfile.
 - ☐ Privacy-friendly analytics.
 - ☐ Healthcheck route + uptime monitor.
 
-## Future — Spatial theme (M9+)
+## M9 — Spatial theme — **NEXT** (after the M6 close-out)
 - ☐ R3F hero with reduced-motion fallback; lazy-loaded; perf-budgeted.
 - ☐ Flip `spatial.available = true` in registry once it meets the bar.
 
