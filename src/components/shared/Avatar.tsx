@@ -33,7 +33,7 @@ export function Avatar({ src, name, className }: AvatarProps) {
 	return (
 		<div
 			className={cn(
-				"flex items-center justify-center overflow-hidden rounded-full bg-accent-muted font-display font-semibold text-accent",
+				"flex items-center justify-center overflow-hidden rounded-full bg-accent-muted font-display font-semibold text-accent-text",
 				className,
 			)}
 			title={name}

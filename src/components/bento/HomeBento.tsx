@@ -61,7 +61,9 @@ export function HomeBento() {
 				</BentoCell>
 
 				<BentoCell size="md" className="flex flex-col gap-3">
-					<Heading level={4}>Stack</Heading>
+					<Heading level={2} size={4}>
+						Stack
+					</Heading>
 					<SkillList groups={skills} />
 				</BentoCell>
 
@@ -83,13 +85,19 @@ export function HomeBento() {
 				</BentoCell>
 
 				<BentoCell size="wide" className="flex flex-col gap-4">
-					<Heading level={4}>Featured</Heading>
+					<Heading level={2} size={4}>
+						Featured
+					</Heading>
 					{featuredProjects.length === 1 ? (
-						<ProjectCard project={featuredProjects[0]} />
+						<ProjectCard project={featuredProjects[0]} headingLevel={3} />
 					) : (
 						<div className="grid gap-4 sm:grid-cols-2">
 							{featuredProjects.map((project) => (
-								<ProjectCard key={project.slug} project={project} />
+								<ProjectCard
+									key={project.slug}
+									project={project}
+									headingLevel={3}
+								/>
 							))}
 						</div>
 					)}

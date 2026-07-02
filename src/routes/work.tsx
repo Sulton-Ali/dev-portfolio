@@ -39,7 +39,11 @@ function WorkPage() {
 				) : (
 					<div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 						{sortedProjects.map((project) => (
-							<ProjectCard key={project.slug} project={project} />
+							<ProjectCard
+								key={project.slug}
+								project={project}
+								headingLevel={2}
+							/>
 						))}
 					</div>
 				)}

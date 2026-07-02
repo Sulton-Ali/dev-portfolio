@@ -36,6 +36,7 @@
 	--l-accent: #4f46e5;
 	--l-accent-fg: #ffffff;
 	--l-accent-muted: rgba(79, 70, 229, 0.12);
+	--l-accent-text: #4f46e5;
 	--l-ring: #6366f1;
 	--l-success: #16a34a;
 	--l-warning: #d97706;
@@ -52,6 +53,7 @@
 	--accent: #6366f1;
 	--accent-fg: #ffffff;
 	--accent-muted: rgba(99, 102, 241, 0.15);
+	--accent-text: #a5b4fc;
 	--ring: #818cf8;
 	--success: #22c55e;
 	--warning: #f59e0b;
@@ -71,6 +73,7 @@
 		--accent: var(--l-accent);
 		--accent-fg: var(--l-accent-fg);
 		--accent-muted: var(--l-accent-muted);
+		--accent-text: var(--l-accent-text);
 		--ring: var(--l-ring);
 		--success: var(--l-success);
 		--warning: var(--l-warning);
@@ -90,6 +93,7 @@
 	--accent: var(--l-accent);
 	--accent-fg: var(--l-accent-fg);
 	--accent-muted: var(--l-accent-muted);
+	--accent-text: var(--l-accent-text);
 	--ring: var(--l-ring);
 	--success: var(--l-success);
 	--warning: var(--l-warning);
@@ -137,6 +141,9 @@
 	--l-accent: #1a7f37;
 	--l-accent-fg: #ffffff;
 	--l-accent-muted: rgba(26, 127, 55, 0.12);
+	/* Darker than --l-accent: as small text it must clear 4.5:1 on the
+	   accent-muted pill fill (#1a7f37 only reaches 4.05:1 there). */
+	--l-accent-text: #15702f;
 	--l-ring: #1a7f37;
 	--l-success: #1a7f37;
 	--l-warning: #b45309;
@@ -153,6 +160,7 @@
 	--accent: #39d353;
 	--accent-fg: #06120a;
 	--accent-muted: rgba(57, 211, 83, 0.15);
+	--accent-text: #39d353;
 	--ring: #39d353;
 	--success: #39d353;
 	--warning: #d9a441;
@@ -172,6 +180,7 @@
 		--accent: var(--l-accent);
 		--accent-fg: var(--l-accent-fg);
 		--accent-muted: var(--l-accent-muted);
+		--accent-text: var(--l-accent-text);
 		--ring: var(--l-ring);
 		--success: var(--l-success);
 		--warning: var(--l-warning);
@@ -191,6 +200,7 @@
 	--accent: var(--l-accent);
 	--accent-fg: var(--l-accent-fg);
 	--accent-muted: var(--l-accent-muted);
+	--accent-text: var(--l-accent-text);
 	--ring: var(--l-ring);
 	--success: var(--l-success);
 	--warning: var(--l-warning);

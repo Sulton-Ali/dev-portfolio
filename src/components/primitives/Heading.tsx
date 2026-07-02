@@ -1,6 +1,9 @@
 import { cn } from "#/lib/utils";
 
-type HeadingProps = { level: 1 | 2 | 3 | 4 } & React.ComponentProps<"h1">;
+type HeadingProps = {
+	level: 1 | 2 | 3 | 4;
+	size?: 1 | 2 | 3 | 4;
+} & React.ComponentProps<"h1">;
 
 const HEADING_ELEMENTS = {
 	1: "h1",
@@ -16,7 +19,9 @@ const HEADING_CLASSES = {
 	4: "font-display text-xl font-semibold text-foreground",
 } as const;
 
-export function Heading({ level, className, ...props }: HeadingProps) {
+export function Heading({ level, size, className, ...props }: HeadingProps) {
 	const Tag = HEADING_ELEMENTS[level];
-	return <Tag className={cn(HEADING_CLASSES[level], className)} {...props} />;
+	return (
+		<Tag className={cn(HEADING_CLASSES[size ?? level], className)} {...props} />
+	);
 }

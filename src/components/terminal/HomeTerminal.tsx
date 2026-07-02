@@ -16,6 +16,10 @@ export function HomeTerminal() {
 	return (
 		<Container className="py-8 sm:py-12">
 			<section>
+				{/* The hero is a code block, so the page h1 is visually hidden. */}
+				<h1 className="sr-only">
+					{profile.name} — {profile.role}
+				</h1>
 				<Prompt command="cat engineer.ts" />
 				<div className="mt-3">
 					<CodeBlock />

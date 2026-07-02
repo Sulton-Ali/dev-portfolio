@@ -6,7 +6,7 @@ type BadgeProps = { variant?: BadgeVariant } & React.ComponentProps<"span">;
 
 const VARIANT_CLASSES: Record<BadgeVariant, string> = {
 	default: "border border-border bg-surface text-muted",
-	accent: "bg-accent-muted text-accent",
+	accent: "bg-accent-muted text-accent-text",
 	outline: "border border-border text-foreground",
 };
 

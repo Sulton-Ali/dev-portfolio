@@ -98,9 +98,18 @@ TanStack Start's official partner and bypasses it via serverless functions.
     TBT 0 ms, CLS 0. Home TTFB flagged (2.4 s mobile) = Netlify function cold start, not
     app code. Deferred (revisit with M8): ~38 KB unused JS in the main bundle
     (route-level splitting), 6 KB render-blocking CSS (negligible).
-  - ◐ A11y fixes from the audit: `color-contrast` — accent `#6366f1` as text on dark
-    badge/pill backgrounds is 2.8–3.5:1 (needs ≥ 4.5:1), all pages; `heading-order` —
-    h4 skips a level after h2 on Home/Work.
+  - ☑ A11y fixes from the audit:
+    - `color-contrast`: new semantic token `--accent-text` (readable accent for small
+      text; Bento dark `#a5b4fc`, Terminal light darkened to `#15702f`) used by the
+      Badge accent variant + Avatar initials. All theme/mode combos now ≥ 4.5:1 on the
+      pill fill (computed: 8.7 / 5.0 / 7.6 / 5.3).
+    - `heading-order`: `Heading` gained a `size` prop (visual size decoupled from
+      semantic level); Home cells are h2-styled-as-h4, `ProjectCard` takes
+      `headingLevel`; Terminal Home got an sr-only h1. No level skips on any page
+      (verified via SSR HTML, both themes).
+    - Verified in-browser (Bento light+dark, Terminal light); gates green.
+- **M6 CLOSED (2026-07-02).** Live-host re-check of the 404 status + a Lighthouse a11y
+  re-run happen after the next deploy.
 - **Done when:** Bento portfolio is live over HTTPS on `sjalolov.dev` via Netlify.
 
 ## M7 — Terminal theme ✅

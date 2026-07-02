@@ -12,6 +12,7 @@
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-fg);
 	--color-accent-muted: var(--accent-muted);
+	--color-accent-text: var(--accent-text);
 	--color-ring: var(--ring);
 	--color-success: var(--success);
 	--color-warning: var(--warning);

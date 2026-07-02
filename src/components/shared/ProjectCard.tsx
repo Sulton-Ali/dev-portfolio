@@ -9,9 +9,12 @@ import {
 import type { Project } from "#/content";
 import { cn } from "#/lib/utils";
 
-type ProjectCardProps = { project: Project };
+type ProjectCardProps = {
+	project: Project;
+	headingLevel?: 2 | 3 | 4;
+};
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, headingLevel = 2 }: ProjectCardProps) {
 	return (
 		<Card
 			interactive
@@ -21,7 +24,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
 			)}
 		>
 			<div className="flex items-start justify-between gap-2">
-				<Heading level={4}>{project.title}</Heading>
+				<Heading level={headingLevel} size={4}>
+					{project.title}
+				</Heading>
 				<Badge>{String(project.year)}</Badge>
 			</div>
 			<Text variant="muted" className="flex-1">
