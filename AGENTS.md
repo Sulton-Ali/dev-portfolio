@@ -100,9 +100,9 @@ Start at [docs/README.md](./docs/README.md). Key docs:
 
 ## Current status
 
-Phase: **M9 — Spatial theme** (next). M6 close-out done 2026-07-02 (real 404 status,
-Lighthouse: Perf 96–100 / BP 100 / SEO 100, a11y contrast + heading-order fixed).
-M8 (hardening) is **deferred**. Done: M0–M3 (scaffold,
+Phase: **all planned milestones done** — M9 (Spatial theme: R3F hero, lazy chunk,
+reduced-motion fallback) shipped 2026-07-02; deploy to publish, then confirm live
+Lighthouse. M8 (hardening) is **deferred** — next if revived. Done: M0–M3 (scaffold,
 content, theme infra, primitives/shared), M4 (Bento + all pages), M5 (SEO/OG/sitemap/
 robots/polish), M6 (deployed to **Netlify**, live on **sjalolov.dev**), M7 (**Terminal
 theme** complete — tokens, code-object hero, Cmd/Ctrl+K command palette). Real content

@@ -10,7 +10,7 @@ The theme registry (`src/theme/registry.ts`) lists available themes:
 export const THEMES = [
   { id: "bento",    label: "Bento",    available: true  },
   { id: "terminal", label: "Terminal", available: true  },
-  { id: "spatial",  label: "Spatial",  available: false }, // future
+  { id: "spatial",  label: "Spatial",  available: true  },
 ] as const;
 ```
 
@@ -141,7 +141,7 @@ Optional **command palette (Cmd/Ctrl+K)** for navigation — perfectly on-theme.
 
 ---
 
-## Theme C — Spatial (building in M9)
+## Theme C — Spatial (built in M9)
 
 ### Concept
 Animation-forward, depth-first. The Home hero is a **3D scene (React Three

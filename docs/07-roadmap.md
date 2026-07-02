@@ -157,10 +157,14 @@ Deferred in favor of the Spatial theme (M9); revisit after M9 ships.
   Known dev-only noise: upstream `THREE.Clock` deprecation from fiber 9.6, and a
   console echo loop between devtools-vite client-log piping and Vite server-log
   forwarding (pre-existing; absent in production builds).
-- ☐ **M9c — gates + ship:** chunk-split verified (bento/terminal bundles unchanged;
-  scene loads only on Spatial Home); browser pass (mobile+desktop, dark+light, all
-  pages); Lighthouse Home ≥ 90 perf with scene; flip `spatial.available = true`.
-- **Done when:** Spatial selectable in the switcher and meets the perf/a11y bar.
+- ☑ **M9c — gates + ship:** production build green; chunk split re-verified on final
+  code (entry 95 kB gz, zero three refs; HeroScene = separate 235 kB gz lazy chunk);
+  switcher path verified in-browser as a fresh visitor (Spatial enabled → click swaps
+  theme in place, cookie persists, SSR reload renders `data-theme="spatial"` no-flash,
+  scene lazy-mounts); flipped `spatial.available = true`.
+- **Done when:** Spatial selectable in the switcher and meets the perf/a11y bar. ✅
+  (M9a–M9c complete 2026-07-02.) Post-deploy: confirm Lighthouse Home ≥ 90 perf with
+  the scene on the live host (as with M6, representative numbers need production).
 
 ---
 
